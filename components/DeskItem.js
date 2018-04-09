@@ -4,7 +4,9 @@ import { white, purple } from '../utils/colors'
 
 export default function DeskItem ({ index, data, itemOnPress }) {
   return (
-    <TouchableOpacity key={index} activeOpacity={1} onPress={itemOnPress}>
+    <TouchableOpacity key={index} activeOpacity={1} onPress={() => {
+      itemOnPress(data)
+    }}>
       <View style={styles.item}>
         <Text>{data.name}</Text>
         <Text>Count:{data.num}</Text>
