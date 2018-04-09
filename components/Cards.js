@@ -3,12 +3,16 @@ import { View, Text, Button } from 'react-native'
 
 class Cards extends Component {
   render() {
-    const { navigate } = this.props.navigation;
+    const { navigate, state } = this.props.navigation;
+    const { name, num }  = state.params //取得正向传值
 
     return (
       <View>
         <Text>
-          Cards
+          Cards:{name}
+        </Text>
+        <Text>
+          Num:{num}
         </Text>
         <Button
           title="Add Card"
