@@ -1,26 +1,29 @@
 import React, { Component } from 'react'
 import { View, Text, Button } from 'react-native'
 import DeckItem from './DeckItem'
+import { fetchDeckWithKey } from '../utils/api'
 
 class Cards extends Component {
 
   state = {
-    // cards: [
-    //   {question: 'Devin?', answer: 0},
-    //   {question: 'Jackson?', answer: 34},
-    //   {question: 'James?', answer: 3},
-    //   {question: 'Joel?', answer: 3},
-    //   {question: 'John?', answer: 45},
-    //   {question: 'Jillian?', answer: 0},
-    //   {question: 'Jimmy?', answer: 0},
-    //   {question: 'Julie?', answer: 25},
-    // ]
+    deck: {}
+  }
+
+  componentWillMount () {
+    const { state } = this.props.navigation;
+    const { title }  = state.params
+    fetchDeckWithKey(title, (obj) => {
+      console.log('deck obj:', obj);
+      this.setState({
+        deck : obj
+      })
+    })
   }
 
   render() {
     const { navigate, state } = this.props.navigation;
-    const { title, questions }  = state.params
-    const num = questions.length
+    const { title, questions }  = this.state.deck
+    const num = questions ? questions.length : 0
 
     return (
       <View>

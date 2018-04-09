@@ -35,7 +35,20 @@ export function fetchDecksResults (callback) {
       : JSON.parse(results)
     callback(obj)
   })
-  console.log('promise:', promise);
+}
+
+export function fetchDeckWithKey (key, callback) {
+  const promise = AsyncStorage.getItem(CARD_STORAGE_KEY, (error, results) => {
+    const obj = (results === null)
+      ? {}
+      : JSON.parse(results)
+
+    console.log('fetchDeckWithKey obj:', obj);
+    const deck = obj[key]
+    console.log('fetchDeckWithKey key:', key);
+    console.log('fetchDeckWithKey deck:', deck);
+    callback(deck)
+  })
 }
 
 export function saveDeckTitle (title) {
