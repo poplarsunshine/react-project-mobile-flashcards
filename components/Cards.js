@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, Button } from 'react-native'
-import DeskItem from './DeskItem'
+import DeckItem from './DeckItem'
 
 class Cards extends Component {
 

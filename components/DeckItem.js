@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { white, purple } from '../utils/colors'
 
-export default function DeskItem ({ index, data, itemOnPress }) {
+export default function DeckItem ({ index, data, itemOnPress }) {
   return (
     <TouchableOpacity key={index} activeOpacity={1} onPress={() => {
       itemOnPress(data)

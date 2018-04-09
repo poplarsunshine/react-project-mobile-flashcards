@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { View, Text, Button, FlatList, StyleSheet } from 'react-native'
 import { white, purple, orange } from '../utils/colors'
-import DeskItem from './DeskItem'
+import DeckItem from './DeckItem'
 
-class Desks extends Component {
+class Decks extends Component {
 
   state = {
-    desks: [
+    Decks: [
       {name: 'Devin', num: 0},
       {name: 'Jackson', num: 34},
       {name: 'James', num: 3},
@@ -31,23 +31,23 @@ class Desks extends Component {
       <View>
         <Button
           color='#f26f28'
-          title="＋ Add Desk"
+          title="＋ Add Deck"
           onPress={() =>
-            navigate('AddDesk')
+            navigate('AddDeck')
           }
         />
 
         <FlatList
-          data={this.state.desks}
+          data={this.state.Decks}
           renderItem={({index, item}) =>
-              <DeskItem
+              <DeckItem
                 index={index}
                 data={item}
                 itemOnPress={(data) => {
                   this.clickItem(data)
                 }}
               >
-              </DeskItem>
+              </DeckItem>
           }
         />
       </View>
@@ -55,7 +55,7 @@ class Desks extends Component {
   }
 }
 
-export default Desks
+export default Decks
 
 const styles = StyleSheet.create({
   item: {

@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Button, TextInput } from 'react-native'
 import { purple, white } from '../utils/colors'
 import TitleInput from './TitleInput'
 
-class AddDesk extends Component {
+class AddDeck extends Component {
 
   state = {
     input: ''
@@ -41,7 +41,7 @@ class AddDesk extends Component {
   }
 }
 
-export default AddDesk
+export default AddDeck
 
 const styles = StyleSheet.create({
 

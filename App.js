@@ -4,9 +4,9 @@ import { Constants } from 'expo'
 import { purple, white } from './utils/colors'
 
 import { StackNavigator } from 'react-navigation'
-import Desks from './components/Desks'
+import Decks from './components/Decks'
 import Cards from './components/Cards'
-import AddDesk from './components/AddDesk'
+import AddDeck from './components/AddDeck'
 import AddCard from './components/AddCard'
 import Test from './components/Test'
 
@@ -19,10 +19,10 @@ function AppStatusBar ({backgroundColor, ...props}) {
 }
 
 const MainNavigator = StackNavigator({
-  Desks: {
-    screen: Desks,
+  Decks: {
+    screen: Decks,
     navigationOptions : {
-        title: 'Desks'
+        title: 'Decks'
     }
   },
   Cards: {
@@ -31,10 +31,10 @@ const MainNavigator = StackNavigator({
         title: 'Cards'
     }
   },
-  AddDesk: {
-    screen: AddDesk,
+  AddDeck: {
+    screen: AddDeck,
     navigationOptions : {
-        title: 'Add Desk'
+        title: 'Add Deck'
     }
   },
   AddCard: {
