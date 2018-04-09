@@ -16,9 +16,17 @@ class AddDeck extends Component {
     })
   }
 
-  render() {
-    const { navigate, goBack } = this.props.navigation;
+  handleSubmit = () => {
+    if(this.state.input) {
+      const { state, goBack } = this.props.navigation
+      const callback = state.params.callback
+      saveDeckTitle(this.state.input)
+      callback()
+      goBack()
+    }
+  }
 
+  render() {
     return (
       <View>
         <TitleInput
@@ -32,12 +40,8 @@ class AddDeck extends Component {
         <Button
           title="Submit"
           onPress={() => {
-            if(this.state.input) {
-              saveDeckTitle(this.state.input)
-              goBack()
-            }
-          }
-          }
+            this.handleSubmit()
+          }}
         />
       </View>
     )

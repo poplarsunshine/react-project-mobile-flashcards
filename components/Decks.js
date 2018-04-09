@@ -10,18 +10,29 @@ class Decks extends Component {
     decksObj: {}
   }
 
+  addDeck = () => {
+    const callback = () => {
+      this.getDecks()
+    }
+    const { navigate } = this.props.navigation;
+    navigate('AddDeck', { callback })
+  }
+
   clickItem = (item) => {
     const { navigate } = this.props.navigation;
     navigate('Cards', item)
   }
 
-  componentWillMount () {
+  getDecks = () => {
     fetchDecksResults((obj) => {
-      console.log('decks callback obj:', obj);
       this.setState({
         decksObj : obj
       })
     })
+  }
+
+  componentWillMount () {
+    this.getDecks()
   }
 
   render() {
@@ -34,9 +45,7 @@ class Decks extends Component {
         <Button
           color='#f26f28'
           title="＋ Add Deck"
-          onPress={() =>
-            navigate('AddDeck')
-          }
+          onPress={this.addDeck}
         />
 
         <FlatList
