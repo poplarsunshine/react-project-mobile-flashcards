@@ -42,6 +42,17 @@ class Test extends Component {
     )
   }
 
+  restart = (show) => {
+    this.setState(
+      {
+        testIndex: 0,
+        rightNum: 0,
+        wrongNum: 0,
+        showAnswer: false,
+      }
+    )
+  }
+
   setAnswerShow = (show) => {
     this.setState(
       {
@@ -65,6 +76,12 @@ class Test extends Component {
         <Text style={styles.text}>Finished</Text>
         <Text style={styles.text}>RightNum: {this.state.rightNum}</Text>
         <Text style={styles.text}>WrongNum: {this.state.wrongNum}</Text>
+        <Button
+          title="Restart"
+          onPress={() => {
+            this.restart()
+          }}
+        />
       </View>
       :
       <View>

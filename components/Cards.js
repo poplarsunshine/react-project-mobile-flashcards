@@ -55,7 +55,7 @@ class Cards extends Component {
           Num:{num}
         </Text>
         <Button
-          title="Test"
+          title="Start Test"
           onPress={() =>
             navigate('Test', questions)
           }
