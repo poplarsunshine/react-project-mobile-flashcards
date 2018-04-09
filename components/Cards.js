@@ -25,7 +25,7 @@ class Cards extends Component {
     return (
       <View>
         <Button
-          title="＋"
+          title="＋ Add Card"
           onPress={() =>
             navigate('AddCard')
           }

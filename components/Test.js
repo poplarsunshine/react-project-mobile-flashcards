@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, Button } from 'react-native'
+import { View, Text, Button, StyleSheet } from 'react-native'
+import AnswerItem from './AnswerItem'
+import { lightPurp } from '../utils/colors'
 
 class Test extends Component {
   state = {
@@ -30,10 +32,20 @@ class Test extends Component {
   }
 
   setIndex = () => {
+    this.setAnswerShow(false)
+
     const index = this.state.testIndex + 1
     this.setState(
       {
         testIndex: index
+      }
+    )
+  }
+
+  setAnswerShow = (show) => {
+    this.setState(
+      {
+        showAnswer: show
       }
     )
   }
@@ -50,30 +62,23 @@ class Test extends Component {
 
     return (
       (testIndex + 1 > sum) ?
-      <View>
-        <Text>Done</Text>
-        <Text>RightNum:{this.state.rightNum}</Text>
-        <Text>WrongNum{this.state.wrongNum}</Text>
+      <View style={styles.item}>
+        <Text style={styles.text}>Finished</Text>
+        <Text style={styles.text}>RightNum: {this.state.rightNum}</Text>
+        <Text style={styles.text}>WrongNum: {this.state.wrongNum}</Text>
       </View>
       :
       <View>
         <Text>Progress:{testIndex + 1}/{sum}</Text>
         <Text>QUESTION:{card.question}</Text>
 
-        (this.state.showAnswer) ?
-        <View>
-          <Text>ANSWER:{card.answer}</Text>
-        </View>
-        :
-        <View>
-        <Button
-          title="Answer"
-          onPress={() => {
-
+        <AnswerItem
+          showContent={this.state.showAnswer}
+          answer={card.answer}
+          itemOnPress={() => {
+            this.setAnswerShow(true)
           }}
-        />
-        </View>
-
+        ></AnswerItem>
         <Button
           title="Right"
           onPress={() => {
@@ -92,3 +97,17 @@ class Test extends Component {
 }
 
 export default Test
+
+const styles = StyleSheet.create({
+  item: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 15,
+  },
+  text: {
+    padding: 5,
+    color: lightPurp,
+    fontSize: 30,
+  },
+})

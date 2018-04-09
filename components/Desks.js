@@ -30,7 +30,7 @@ class Desks extends Component {
     return (
       <View>
         <Button
-          title="＋"
+          title="＋ Add Desk"
           onPress={() =>
             navigate('AddDesk')
           }
