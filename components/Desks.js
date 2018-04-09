@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Text, Button, FlatList, StyleSheet } from 'react-native'
-import { white, purple } from '../utils/colors'
+import { white, purple, orange } from '../utils/colors'
 import DeskItem from './DeskItem'
 
 class Desks extends Component {
@@ -30,6 +30,7 @@ class Desks extends Component {
     return (
       <View>
         <Button
+          color='#f26f28'
           title="＋ Add Desk"
           onPress={() =>
             navigate('AddDesk')

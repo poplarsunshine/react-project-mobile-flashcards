@@ -25,6 +25,7 @@ class Cards extends Component {
     return (
       <View>
         <Button
+          color='#f26f28'
           title="＋ Add Card"
           onPress={() =>
             navigate('AddCard')

@@ -80,12 +80,14 @@ class Test extends Component {
           }}
         ></AnswerItem>
         <Button
+          color='#197E1C'
           title="Right"
           onPress={() => {
             this.answerRight()
           }}
         />
         <Button
+          color='#B71845'
           title="Wrong"
           onPress={() => {
             this.answerWrong()
