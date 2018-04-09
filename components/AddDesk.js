@@ -1,7 +1,18 @@
 import React, { Component } from 'react'
-import { View, Text, Button } from 'react-native'
+import { StyleSheet, View, Text, Button, TextInput } from 'react-native'
+import { purple, white } from '../utils/colors'
 
 class AddDesk extends Component {
+
+  state = {
+    input: ''
+  }
+
+  handleTextInput = (value) => {
+    this.setState({
+        input: value
+    })
+  }
 
   render() {
     const { navigate, goBack } = this.props.navigation;
@@ -11,6 +22,14 @@ class AddDesk extends Component {
         <Text>
           DeskName
         </Text>
+        <TextInput
+          style={styles.input}
+          value = {this.state.input}
+          onChangeText = {(value) => {
+            this.handleTextInput(value)
+          }}
+        >
+        </TextInput>
         <Button
           title="Submit"
           onPress={() =>
@@ -23,3 +42,9 @@ class AddDesk extends Component {
 }
 
 export default AddDesk
+
+const styles = StyleSheet.create({
+  input: {
+    backgroundColor: white,
+  },
+})
