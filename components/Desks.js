@@ -19,7 +19,7 @@ class Desks extends Component {
   }
 
   clickItem = (item) => {
-    // alert(item.name + ':' + item.num)
+    alert(item.name + ':' + item.num)
     const { navigate } = this.props.navigation;
     navigate('Cards', item)
   }
@@ -30,7 +30,7 @@ class Desks extends Component {
     return (
       <View>
         <Button
-          title="Add Desk"
+          title="＋"
           onPress={() =>
             navigate('AddDesk')
           }
@@ -47,12 +47,6 @@ class Desks extends Component {
                 }}
               >
               </DeskItem>
-          }
-        />
-        <Button
-          title="Desk Cards"
-          onPress={() =>
-            navigate('Cards')
           }
         />
       </View>

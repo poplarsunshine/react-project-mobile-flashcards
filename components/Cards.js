@@ -10,18 +10,18 @@ class Cards extends Component {
 
     return (
       <View>
+        <Button
+          title="＋"
+          onPress={() =>
+            navigate('AddCard')
+          }
+        />
         <Text>
           Cards:{name}
         </Text>
         <Text>
           Num:{num}
         </Text>
-        <Button
-          title="Add Card"
-          onPress={() =>
-            navigate('AddCard')
-          }
-        />
         <Button
           title="Test"
           onPress={() =>
