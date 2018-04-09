@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, Button, FlatList, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, Button, FlatList, StyleSheet } from 'react-native'
 import { white, purple } from '../utils/colors'
+import DeskItem from './DeskItem'
 
 class Desks extends Component {
 
@@ -38,17 +39,14 @@ class Desks extends Component {
         <FlatList
           data={this.state.desks}
           renderItem={({index, item}) =>
-            <TouchableOpacity key={index} activeOpacity={1} onPress={() => {
-              this.clickItem(item)
-            }}>
-              <View>
-                <View style={styles.item}>
-                  <Text>{item.name}</Text>
-                  <Text>Count:{item.num}</Text>
-                </View>
-                <Text style={styles.line}></Text>
-              </View>
-            </TouchableOpacity>
+              <DeskItem
+                index={index}
+                data={item}
+                itemOnPress={(data) => {
+                  this.clickItem(data)
+                }}
+              >
+              </DeskItem>
           }
         />
         <Button
