@@ -1,31 +1,33 @@
 import React, { Component } from 'react'
 import { View, Text, Button, FlatList, StyleSheet } from 'react-native'
 import { white, purple, orange } from '../utils/colors'
+import { fetchDecksResults } from '../utils/api'
 import DeckItem from './DeckItem'
 
 class Decks extends Component {
 
   state = {
-    Decks: [
-      {name: 'Devin', num: 0},
-      {name: 'Jackson', num: 34},
-      {name: 'James', num: 3},
-      {name: 'Joel', num: 3},
-      {name: 'John', num: 45},
-      {name: 'Jillian', num: 0},
-      {name: 'Jimmy', num: 0},
-      {name: 'Julie', num: 25},
-    ]
+    decksObj: {}
   }
 
   clickItem = (item) => {
-    alert(item.name + ':' + item.num)
     const { navigate } = this.props.navigation;
     navigate('Cards', item)
   }
 
+  componentWillMount () {
+    fetchDecksResults((obj) => {
+      console.log('decks callback obj:', obj);
+      this.setState({
+        decksObj : obj
+      })
+    })
+  }
+
   render() {
     const { navigate } = this.props.navigation;
+    const decks = Object.values(this.state.decksObj)
+    console.log('render decks:', decks);
 
     return (
       <View>
@@ -38,7 +40,7 @@ class Decks extends Component {
         />
 
         <FlatList
-          data={this.state.Decks}
+          data={decks}
           renderItem={({index, item}) =>
               <DeckItem
                 index={index}

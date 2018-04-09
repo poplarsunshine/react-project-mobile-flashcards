@@ -3,13 +3,15 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { white, purple } from '../utils/colors'
 
 export default function DeckItem ({ index, data, itemOnPress }) {
+  const name = data.title
+  const num = data.questions.length
   return (
     <TouchableOpacity key={index} activeOpacity={1} onPress={() => {
       itemOnPress(data)
     }}>
       <View style={styles.item}>
-        <Text>{data.name}</Text>
-        <Text>Count:{data.num}</Text>
+        <Text>{name}</Text>
+        <Text>Count:{num}</Text>
       </View>
       <Text style={styles.line}></Text>
     </TouchableOpacity>

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Text, Button, TextInput } from 'react-native'
 import { purple, white } from '../utils/colors'
 import TitleInput from './TitleInput'
+import { saveDeckTitle } from '../utils/api'
 
 class AddDeck extends Component {
 
@@ -31,8 +32,10 @@ class AddDeck extends Component {
         <Button
           title="Submit"
           onPress={() => {
-            alert(this.state.input)
-            goBack()
+            if(this.state.input) {
+              saveDeckTitle(this.state.input)
+              goBack()
+            }
           }
           }
         />
