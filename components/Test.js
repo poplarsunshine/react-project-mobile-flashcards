@@ -58,7 +58,6 @@ class Test extends Component {
 
     console.log('testIndex:', testIndex);
     const card = cards[testIndex]
-    console.log('Test card:', card);
 
     return (
       (testIndex + 1 > sum) ?

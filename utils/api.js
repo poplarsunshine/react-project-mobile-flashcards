@@ -43,10 +43,7 @@ export function fetchDeckWithKey (key, callback) {
       ? {}
       : JSON.parse(results)
 
-    console.log('fetchDeckWithKey obj:', obj);
     const deck = obj[key]
-    console.log('fetchDeckWithKey key:', key);
-    console.log('fetchDeckWithKey deck:', deck);
     callback(deck)
   })
 }
@@ -59,4 +56,14 @@ export function saveDeckTitle (title) {
     }
   }
   return AsyncStorage.mergeItem(CARD_STORAGE_KEY, JSON.stringify(obj))
+}
+
+export function addCardToDeck (key, question, answer, callback) {
+  const qa = { question, answer}
+  fetchDecksResults((obj) => {
+    const deck = obj[key]
+    deck.questions.push(qa)
+    obj[key] = deck
+    AsyncStorage.mergeItem(CARD_STORAGE_KEY, JSON.stringify(obj), callback())
+  })
 }

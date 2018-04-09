@@ -9,15 +9,29 @@ class Cards extends Component {
     deck: {}
   }
 
-  componentWillMount () {
+  addCard = () => {
+    const callback = () => {
+      this.getDeck()
+    }
+    const { navigate, state } = this.props.navigation;
+    const { title }  = state.params
+    navigate('AddCard', { title, callback })
+  }
+
+  getDeck = () => {
     const { state } = this.props.navigation;
     const { title }  = state.params
     fetchDeckWithKey(title, (obj) => {
-      console.log('deck obj:', obj);
+      console.log('obj:', obj);
       this.setState({
         deck : obj
       })
     })
+    console.log('getDeck:', title);
+  }
+
+  componentWillMount () {
+    this.getDeck()
   }
 
   render() {
@@ -25,14 +39,14 @@ class Cards extends Component {
     const { title, questions }  = this.state.deck
     const num = questions ? questions.length : 0
 
+    console.log('questions:', questions);
+
     return (
       <View>
         <Button
           color='#f26f28'
           title="＋ Add Card"
-          onPress={() =>
-            navigate('AddCard')
-          }
+          onPress={this.addCard}
         />
         <Text>
           Cards:{title}

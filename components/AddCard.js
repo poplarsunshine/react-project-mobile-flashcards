@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, Button } from 'react-native'
 import TitleInput from './TitleInput'
+import { addCardToDeck } from '../utils/api'
 
 class AddCard extends Component {
 
@@ -21,10 +22,23 @@ class AddCard extends Component {
     })
   }
 
+  handleSubmit = () => {
+    if(this.state.question && this.state.answer) {
+      const { state, goBack } = this.props.navigation
+      const { title, callback } = state.params
+      addCardToDeck(title, this.state.question, this.state.answer, () => {
+        console.log('addCardToDeck callback');
+        callback()
+        goBack()
+      })
+    }
+  }
+
   render() {
-    const { navigate, goBack } = this.props.navigation;
+    const { navigate, goBack, state } = this.props.navigation;
     return (
       <View>
+        <Text>Add Card To {state.params.title}</Text>
         <TitleInput
           title={"Question:"}
           value = {this.state.question}
@@ -45,12 +59,9 @@ class AddCard extends Component {
         <Button
           title="Submit"
           onPress={() => {
-            alert(this.state.question)
-            alert(this.state.answer)
-            goBack()
-          }
-          }
-        />
+            this.handleSubmit()
+          }}
+          />
       </View>
     )
   }
