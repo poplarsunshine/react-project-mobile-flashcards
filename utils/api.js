@@ -1,6 +1,6 @@
 import { AsyncStorage } from 'react-native'
 
-export const CARD_STORAGE_KEY = 'Udacity:cards'
+export const CARD_STORAGE_KEY = 'Udacity:flashcards'
 
 export function fetchDecksResults (callback) {
   const promise = AsyncStorage.getItem(CARD_STORAGE_KEY, (error, results) => {

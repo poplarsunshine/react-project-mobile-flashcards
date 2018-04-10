@@ -32,21 +32,18 @@ export function setLocalNotification () {
       if (data === null) {
         Permissions.askAsync(Permissions.NOTIFICATIONS)
           .then(({ status }) => {
-            console.log('Permissions status:', status);
             if (status === 'granted') {
               Notifications.cancelAllScheduledNotificationsAsync()
 
-              let today = new Date()
-              today.setDate(today.getDate())
-              today.setHours(10)
-              today.setMintutes(42)
-
-              console.log('setLocalNotification today:', today);
+              let tomorrow = new Date()
+              tomorrow.setDate(tomorrow.getDate() + 1)
+              tomorrow.setHours(20)
+              tomorrow.setMintutes(0)
 
               Notifications.scheduleLocalNotificationAsync(
                 createNotification(),
                 {
-                  time: today,
+                  time: tomorrow,
                   repeat: 'day',
                 }
               )
@@ -54,6 +51,6 @@ export function setLocalNotification () {
               AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true))
             }
           })
-        }
+      }
     })
 }
