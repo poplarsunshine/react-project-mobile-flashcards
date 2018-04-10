@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, Button, FlatList, StyleSheet } from 'react-native'
 import { white, purple, orange } from '../utils/colors'
 import { fetchDecksResults } from '../utils/api'
+import { setLocalNotification } from '../utils/helpers'
 import DeckItem from './DeckItem'
 
 class Decks extends Component {
@@ -33,6 +34,10 @@ class Decks extends Component {
 
   componentWillMount () {
     this.getDecks()
+  }
+
+  componentDidMount() {
+    setLocalNotification()
   }
 
   render() {

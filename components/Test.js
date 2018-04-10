@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, Button, StyleSheet } from 'react-native'
 import AnswerItem from './AnswerItem'
 import { lightPurp } from '../utils/colors'
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 class Test extends Component {
   state = {
@@ -40,6 +41,9 @@ class Test extends Component {
         testIndex: index
       }
     )
+
+    clearLocalNotification()
+      .then(setLocalNotification)
   }
 
   restart = (show) => {
