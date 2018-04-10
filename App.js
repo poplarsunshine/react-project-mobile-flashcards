@@ -1,4 +1,8 @@
 import React from 'react';
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import combineReducers from './reducers'
+
 import { StatusBar, View } from 'react-native';
 import { Constants } from 'expo'
 import { purple, white } from './utils/colors'
@@ -54,10 +58,12 @@ const MainNavigator = StackNavigator({
 export default class App extends React.Component {
   render() {
     return (
-      <View style={{flex: 1}}>
-        <AppStatusBar backgroundColor={purple} barStyle="light-content" />
-        <MainNavigator/>
-      </View>
+      <Provider store={createStore(combineReducers)}>
+        <View style={{flex: 1}}>
+          <AppStatusBar backgroundColor={purple} barStyle="light-content" />
+          <MainNavigator/>
+        </View>
+      </Provider>
     );
   }
 }

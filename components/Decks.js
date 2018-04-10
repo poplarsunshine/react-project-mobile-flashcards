@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { View, Text, Button, FlatList, StyleSheet } from 'react-native'
 import { white, purple, orange } from '../utils/colors'
 import { fetchDecksResults } from '../utils/api'
@@ -42,8 +43,11 @@ class Decks extends Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    const decks = Object.values(this.state.decksObj)
+    const { decks } = this.props
     console.log('render decks:', decks);
+
+    const decksArray = Object.values(this.state.decksObj)
+    console.log('render decksArray:', decksArray);
 
     return (
       <View>
@@ -54,7 +58,7 @@ class Decks extends Component {
         />
 
         <FlatList
-          data={decks}
+          data={decksArray}
           renderItem={({index, item}) =>
               <DeckItem
                 index={index}
@@ -71,7 +75,15 @@ class Decks extends Component {
   }
 }
 
-export default Decks
+function mapStateToProps (desks) {
+  return {
+    desks
+  }
+}
+
+export default connect(
+  mapStateToProps,
+)(Decks)
 
 const styles = StyleSheet.create({
   item: {
