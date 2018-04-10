@@ -2,7 +2,12 @@ This project was bootstrapped with [Create React Native App](https://github.com/
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
 
-# run success on iOS
+# run success on iOS Simulator
+```
+1.clone or download project
+2.npm install
+3.yarn start / yarn run ios
+```
 
 ## Table of Contents
 

@@ -37,8 +37,8 @@ export function setLocalNotification () {
 
               let today = new Date()
               // today.setDate(tomorrow.getDate() + 1)
-              today.setHours(20)
-              today.setMintutes(0)
+              today.setHours(23)
+              today.setMintutes(55)
 
               Notifications.scheduleLocalNotificationAsync(
                 createNotification(),
