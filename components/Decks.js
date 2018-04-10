@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { actionSetDecks } from '../actions'
+
 import { View, Text, Button, FlatList, StyleSheet } from 'react-native'
 import { white, purple, orange } from '../utils/colors'
 import { fetchDecksResults } from '../utils/api'
@@ -7,11 +9,6 @@ import { setLocalNotification } from '../utils/helpers'
 import DeckItem from './DeckItem'
 
 class Decks extends Component {
-
-  state = {
-    decksObj: {}
-  }
-
   addDeck = () => {
     const callback = () => {
       this.getDecks()
@@ -27,9 +24,7 @@ class Decks extends Component {
 
   getDecks = () => {
     fetchDecksResults((obj) => {
-      this.setState({
-        decksObj : obj
-      })
+      this.props.actionSetDecks(obj);
     })
   }
 
@@ -44,9 +39,7 @@ class Decks extends Component {
   render() {
     const { navigate } = this.props.navigation;
     const { decks } = this.props
-    console.log('render decks:', decks);
-
-    const decksArray = Object.values(this.state.decksObj)
+    const decksArray = Object.values(decks)
     console.log('render decksArray:', decksArray);
 
     return (
@@ -76,13 +69,18 @@ class Decks extends Component {
 }
 
 function mapStateToProps (desks) {
-  return {
-    desks
-  }
+  return desks
+}
+
+function mapDispatchToProps (dispatch) {
+    return {
+        actionSetDecks: (data) => dispatch(actionSetDecks(data)),
+    }
 }
 
 export default connect(
   mapStateToProps,
+  mapDispatchToProps
 )(Decks)
 
 const styles = StyleSheet.create({

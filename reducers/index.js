@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import { ADD_DECK, ADD_CARD } from '../actions'
+import { SET_DECKS, ADD_DECK, ADD_CARD } from '../actions'
 
 defaultData = {
   React: {
@@ -28,6 +28,9 @@ defaultData = {
 
 function decks (state = defaultData, action) {
   switch (action.type) {
+    case SET_DECKS :
+      console.log('reducer decks:', action.decks);
+      return action.decks
     case ADD_DECK :
       return {
         ...state,
