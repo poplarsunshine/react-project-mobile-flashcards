@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import { StyleSheet, View, Text, Button, TextInput } from 'react-native'
 import { purple, white } from '../utils/colors'
 import TitleInput from './TitleInput'
-import { saveDeckTitle } from '../utils/api'
+import { saveDeck } from '../utils/api'
+
+import { connect } from 'react-redux'
+import { actionAddDeck } from '../actions'
 
 class AddDeck extends Component {
 
@@ -20,7 +23,17 @@ class AddDeck extends Component {
     if(this.state.input) {
       const { state, goBack } = this.props.navigation
       const callback = state.params.callback
-      saveDeckTitle(this.state.input)
+      const title = this.state.input
+      const obj = {
+        [title] : {
+          title: title,
+          questions: [],
+        }
+      }
+      // Store
+      this.props.actionAddDeck(obj)
+      // DB
+      saveDeck(obj)
       callback()
       goBack()
     }
@@ -48,7 +61,16 @@ class AddDeck extends Component {
   }
 }
 
-export default AddDeck
+function mapDispatchToProps (dispatch) {
+    return {
+        actionAddDeck: (data) => dispatch(actionAddDeck(data))
+    }
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(AddDeck)
 
 const styles = StyleSheet.create({
 

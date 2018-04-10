@@ -23,13 +23,7 @@ export function fetchDeckWithKey (key, callback) {
   })
 }
 
-export function saveDeckTitle (title) {
-  const obj = {
-    [title] : {
-      title: title,
-      questions: [],
-    }
-  }
+export function saveDeck (obj) {
   return AsyncStorage.mergeItem(CARD_STORAGE_KEY, JSON.stringify(obj))
 }
 

@@ -29,11 +29,12 @@ defaultData = {
 function decks (state = defaultData, action) {
   switch (action.type) {
     case SET_DECKS :
-      console.log('reducer decks:', action.decks);
       return action.decks
     case ADD_DECK :
+      console.log('reducer ADD_DECK deck:', action.deck);
       return {
         ...state,
+        ...aciton.deck
       }
     case ADD_CARD :
       return {

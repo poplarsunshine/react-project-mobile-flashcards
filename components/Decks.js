@@ -9,6 +9,7 @@ import { setLocalNotification } from '../utils/helpers'
 import DeckItem from './DeckItem'
 
 class Decks extends Component {
+
   addDeck = () => {
     const callback = () => {
       this.getDecks()
@@ -68,8 +69,8 @@ class Decks extends Component {
   }
 }
 
-function mapStateToProps (desks) {
-  return desks
+function mapStateToProps (decks) {
+  return decks
 }
 
 function mapDispatchToProps (dispatch) {
