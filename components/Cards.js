@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import { View, Text, Button } from 'react-native'
 import DeckItem from './DeckItem'
-import { fetchDeckWithKey } from '../utils/api'
+import { fetchDecksResults } from '../utils/api'
+
+import { connect } from 'react-redux'
+import { actionSetDecks } from '../actions'
 
 class Cards extends Component {
-
-  state = {
-    deck: {}
-  }
 
   addCard = () => {
     const callback = () => {
@@ -19,15 +18,21 @@ class Cards extends Component {
   }
 
   getDeck = () => {
-    const { state } = this.props.navigation;
-    const { title }  = state.params
-    fetchDeckWithKey(title, (obj) => {
-      console.log('obj:', obj);
-      this.setState({
-        deck : obj
-      })
+    // const { state } = this.props.navigation;
+    // const { title }  = state.params
+    // fetchDeckWithKey(title, (obj) => {
+    //   console.log('obj:', obj);
+    //   this.setState({
+    //     deck : obj
+    //   })
+    // })
+
+    console.log('cards getDeck');
+
+    fetchDecksResults((obj) => {
+      console.log('cards fetchDecksResults');
+      this.props.actionSetDecks(obj);
     })
-    console.log('getDeck:', title);
   }
 
   componentWillMount () {
@@ -36,7 +41,10 @@ class Cards extends Component {
 
   render() {
     const { navigate, state } = this.props.navigation;
-    const { title, questions }  = this.state.deck
+    const { title }  = state.params
+    const { decks } = this.props
+    const deck = decks[title]
+    const { questions }  = deck
     const num = questions ? questions.length : 0
 
     console.log('questions:', questions);
@@ -45,11 +53,16 @@ class Cards extends Component {
       <View>
         <Button
           color='#f26f28'
+          title="Update"
+          onPress={this.getDeck}
+        />
+        <Button
+          color='#f26f28'
           title="＋ Add Card"
           onPress={this.addCard}
         />
         <Text>
-          Cards:{title}
+          Deck:{title}
         </Text>
         <Text>
           Num:{num}
@@ -65,4 +78,18 @@ class Cards extends Component {
   }
 }
 
-export default Cards
+function mapStateToProps (decks) {
+  console.log('cards mapStateToProps decks:', decks);
+  return decks
+}
+
+function mapDispatchToProps (dispatch) {
+    return {
+        actionSetDecks: (data) => dispatch(actionSetDecks(data)),
+    }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Cards)

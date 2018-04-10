@@ -34,11 +34,20 @@ function decks (state = defaultData, action) {
       console.log('reducer ADD_DECK deck:', action.deck);
       return {
         ...state,
-        ...aciton.deck
+        ...action.deck,
       }
     case ADD_CARD :
+      const { deckName, card } = action
+      const key = deckName
       return {
         ...state,
+        [key]: {
+          ...state[key],
+          'questions': {
+            ...state[key]['questions'],
+            ...card
+          }
+        }
       }
     default :
       return state

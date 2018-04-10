@@ -3,6 +3,9 @@ import { View, Text, Button } from 'react-native'
 import TitleInput from './TitleInput'
 import { addCardToDeck } from '../utils/api'
 
+import { connect } from 'react-redux'
+import { actionAddCard } from '../actions'
+
 class AddCard extends Component {
 
   state = {
@@ -26,10 +29,17 @@ class AddCard extends Component {
     if(this.state.question && this.state.answer) {
       const { state, goBack } = this.props.navigation
       const { title, callback } = state.params
-      addCardToDeck(title, this.state.question, this.state.answer, () => {
+      const card = {
+        question: this.state.question,
+        answer: this.state.answer
+      }
+      // DB
+      addCardToDeck(title, card, () => {
         console.log('addCardToDeck callback');
-        callback()
-        goBack()
+        // Store
+        this.props.actionAddCard(title, card)
+        // callback()
+        // goBack()
       })
     }
   }
@@ -67,4 +77,13 @@ class AddCard extends Component {
   }
 }
 
-export default AddCard
+function mapDispatchToProps (dispatch) {
+    return {
+        actionAddCard: (data) => dispatch(actionAddCard(data))
+    }
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(AddCard)

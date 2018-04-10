@@ -27,8 +27,7 @@ export function saveDeck (obj) {
   return AsyncStorage.mergeItem(CARD_STORAGE_KEY, JSON.stringify(obj))
 }
 
-export function addCardToDeck (key, question, answer, callback) {
-  const qa = { question, answer}
+export function addCardToDeck (key, qa, callback) {
   fetchDecksResults((obj) => {
     const deck = obj[key]
     deck.questions.push(qa)

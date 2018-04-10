@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { actionSetDecks } from '../actions'
-
 import { View, Text, Button, FlatList, StyleSheet } from 'react-native'
 import { white, purple, orange } from '../utils/colors'
 import { fetchDecksResults } from '../utils/api'
 import { setLocalNotification } from '../utils/helpers'
 import DeckItem from './DeckItem'
+
+import { connect } from 'react-redux'
+import { actionSetDecks } from '../actions'
 
 class Decks extends Component {
 
@@ -45,6 +45,12 @@ class Decks extends Component {
 
     return (
       <View>
+        <Button
+          color='#f26f28'
+          title="Update"
+          onPress={this.getDecks}
+        />
+
         <Button
           color='#f26f28'
           title="＋ Add Deck"

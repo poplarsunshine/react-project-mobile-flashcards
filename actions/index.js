@@ -16,10 +16,10 @@ export function actionAddDeck (deck) {
   }
 }
 
-export function actionAddCard (deck, card) {
+export function actionAddCard (deckName, card) {
   return {
     type: ADD_CARD,
-    deck,
+    deckName,
     card,
   }
 }
