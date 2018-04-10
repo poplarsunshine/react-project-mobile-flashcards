@@ -9,37 +9,36 @@ import { actionAddCard } from '../actions'
 class AddCard extends Component {
 
   state = {
-    question: '',
-    answer: '',
+    inputQuestion: '',
+    inputAnswer: '',
   }
 
   handleTextInputQ = (value) => {
     this.setState({
-        question: value
+        inputQuestion: value
     })
   }
 
   handleTextInputA = (value) => {
     this.setState({
-        answer: value
+        inputAnswer: value
     })
   }
 
   handleSubmit = () => {
-    if(this.state.question && this.state.answer) {
+    if(this.state.inputQuestion && this.state.inputAnswer) {
       const { state, goBack } = this.props.navigation
       const { title, callback } = state.params
       const card = {
-        question: this.state.question,
-        answer: this.state.answer
+        question: this.state.inputQuestion,
+        answer: this.state.inputAnswer
       }
       // DB
       addCardToDeck(title, card, () => {
-        console.log('addCardToDeck callback');
         // Store
         this.props.actionAddCard(title, card)
         // callback()
-        // goBack()
+        goBack()
       })
     }
   }
@@ -51,7 +50,7 @@ class AddCard extends Component {
         <Text>Add Card To {state.params.title}</Text>
         <TitleInput
           title={"Question:"}
-          value = {this.state.question}
+          value = {this.state.inputQuestion}
           inputOnChange = {(value) => {
             this.handleTextInputQ(value)
           }}
@@ -59,7 +58,7 @@ class AddCard extends Component {
         </TitleInput>
         <TitleInput
           title={"Answer:"}
-          value = {this.state.answer}
+          value = {this.state.inputAnswer}
           inputOnChange = {(value) => {
             this.handleTextInputA(value)
           }}
@@ -79,7 +78,7 @@ class AddCard extends Component {
 
 function mapDispatchToProps (dispatch) {
     return {
-        actionAddCard: (data) => dispatch(actionAddCard(data))
+        actionAddCard: (title, data) => dispatch(actionAddCard(title, data))
     }
 }
 

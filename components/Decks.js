@@ -12,7 +12,7 @@ class Decks extends Component {
 
   addDeck = () => {
     const callback = () => {
-      this.getDecks()
+      // this.getDecks()
     }
     const { navigate } = this.props.navigation;
     navigate('AddDeck', { callback })
@@ -40,17 +40,11 @@ class Decks extends Component {
   render() {
     const { navigate } = this.props.navigation;
     const { decks } = this.props
+    console.log('Decks render decks:', decks);
     const decksArray = Object.values(decks)
-    console.log('render decksArray:', decksArray);
 
     return (
       <View>
-        <Button
-          color='#f26f28'
-          title="Update"
-          onPress={this.getDecks}
-        />
-
         <Button
           color='#f26f28'
           title="＋ Add Deck"

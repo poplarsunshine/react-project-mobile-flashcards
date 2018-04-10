@@ -34,7 +34,7 @@ class AddDeck extends Component {
       this.props.actionAddDeck(obj)
       // DB
       saveDeck(obj)
-      callback()
+      // callback()
       goBack()
     }
   }

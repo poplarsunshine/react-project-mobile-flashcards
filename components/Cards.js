@@ -10,7 +10,7 @@ class Cards extends Component {
 
   addCard = () => {
     const callback = () => {
-      this.getDeck()
+      // this.getDeck()
     }
     const { navigate, state } = this.props.navigation;
     const { title }  = state.params
@@ -18,19 +18,7 @@ class Cards extends Component {
   }
 
   getDeck = () => {
-    // const { state } = this.props.navigation;
-    // const { title }  = state.params
-    // fetchDeckWithKey(title, (obj) => {
-    //   console.log('obj:', obj);
-    //   this.setState({
-    //     deck : obj
-    //   })
-    // })
-
-    console.log('cards getDeck');
-
     fetchDecksResults((obj) => {
-      console.log('cards fetchDecksResults');
       this.props.actionSetDecks(obj);
     })
   }
@@ -51,11 +39,6 @@ class Cards extends Component {
 
     return (
       <View>
-        <Button
-          color='#f26f28'
-          title="Update"
-          onPress={this.getDeck}
-        />
         <Button
           color='#f26f28'
           title="＋ Add Card"
@@ -79,7 +62,6 @@ class Cards extends Component {
 }
 
 function mapStateToProps (decks) {
-  console.log('cards mapStateToProps decks:', decks);
   return decks
 }
 

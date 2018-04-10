@@ -39,16 +39,17 @@ function decks (state = defaultData, action) {
     case ADD_CARD :
       const { deckName, card } = action
       const key = deckName
-      return {
+      const questions = state[key]['questions']
+      questions.push(card)
+      const obj = {
         ...state,
         [key]: {
           ...state[key],
-          'questions': {
-            ...state[key]['questions'],
-            ...card
-          }
+          'questions': questions
         }
       }
+      console.log('reducer ADD_CARD state:', obj);
+      return obj
     default :
       return state
   }
