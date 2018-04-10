@@ -45,10 +45,10 @@ class Cards extends Component {
           onPress={this.addCard}
         />
         <Text>
-          Deck:{title}
+          Deck: {title}
         </Text>
         <Text>
-          Num:{num}
+          Num: {num}
         </Text>
         <Button
           title="Start Test"
